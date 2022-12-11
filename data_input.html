@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Corn-i</title>
+		<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap"
+			rel="stylesheet" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@900&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<style>
+		.input_container {
+			border: 1px solid #d9d9d9;
+			border-radius: 8px;
+		}
+
+		input[type="file"]::file-selector-button {
+			background-color: #d9d9d9;
+			color: #000;
+			border: 0px;
+			border-right: 1px solid #d9d9d9;
+			padding: 10px 15px;
+			margin-right: 20px;
+			transition: 0.5s;
+			border-radius: 8px 0 0 8px;
+		}
+
+		input[type="file"]::file-selector-button:hover {
+			background-color: #eee;
+			border: 0px;
+			border-right: 2px solid #d9d9d9;
+			border-radius: 8px 0 0 8px;
+		}
+		button,
+		input[type="submit"],
+		input[type="reset"] {
+			background: none;
+			color: inherit;
+			border: none;
+			padding: 0;
+			font: inherit;
+			cursor: pointer;
+			outline: inherit;
+		}
+		button {
+			background-color: var(--primary);
+			margin-top: 16px;
+			border-radius: 8px;
+			cursor: pointer;
+			width: 100%;
+		}
+		button h3 {
+			padding: 8px 0;
+			text-align: center;
+			vertical-align: middle;
+		}
+		table {
+			font-family: arial, sans-serif;
+			width: 100%;
+			margin-top: 48px;
+			border-radius: 8px !important;
+		}
+
+		td,
+		th {
+			text-align: left;
+			padding: 8px;
+		}
+		td {
+			font-weight: 100;
+		}
+		tr:first-child {
+			border-radius: 8px !important;
+			background-color: var(--primary);
+		}
+		tr:nth-child(even) {
+			background-color: #dddddd;
+		}
+	</style>
+	<body>
+		<nav>
+			<h1 class="title">Corn Analysis</h1>
+			<div class="flex-row nav-button-container">
+				<a href="/index.html" aria-disabled="true">
+					<h3 class="nav-link">
+						Pag mamapa at Pag tataya &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+					</h3>
+				</a>
+				<a href="#"> <h3 class="nav-link">Lingguhang Talaarawan</h3> </a>
+			</div>
+		</nav>
+		<div class="flex-row justify-content-between">
+			<div>
+				<h1>Baranggay</h1>
+				<select id="ddlViewBy">
+					<option value="MALABANAN_NORTE" selected="selected">
+						MALABANAN NORTE
+					</option>
+					<option value="MARANGAY">MARANGAY</option>
+				</select>
+			</div>
+			<div>
+				<h1>Kategorya</h1>
+				<div class="flex-row">
+					<img
+						src="./assets/icons/ic_disease_gray_fill.png"
+						class="nav-image disabled" />
+					<img
+						src="./assets/icons/ic_pest_gray_fill.png"
+						class="nav-image disabled" />
+					<img
+						src="./assets/icons/ic_nutrients_green_outline.png"
+						class="nav-image" />
+				</div>
+			</div>
+			<div>
+				<h1>Parameter</h1>
+				<img
+					src="./assets/icons/ic_nitrogen_green_outline.png"
+					class="nav-image" />
+			</div>
+		</div>
+		<main>
+			<form>
+				<div class="input_container">
+					<input type="file" id="fileUpload" />
+				</div>
+				<button>
+					<h3>Upload</h3>
+				</button>
+			</form>
+			<table>
+				<tr>
+					<th>Date</th>
+					<th>Crop 1</th>
+					<th>Crop 2</th>
+					<th>Crop 3</th>
+					<th>Crop 4</th>
+					<th>Crop 5</th>
+					<th>Crop 6</th>
+					<th>Crop 7</th>
+					<th>Crop ...</th>
+				</tr>
+				<tr>
+					<td>12/01/2020</td>
+					<td>34</td>
+					<td>25</td>
+					<td>40</td>
+					<td>43</td>
+					<td>27</td>
+					<td>5</td>
+					<td>58</td>
+					<td>51</td>
+				</tr>
+				<tr>
+					<td>12/02/2020</td>
+					<td>12</td>
+					<td>88</td>
+					<td>102</td>
+					<td>43</td>
+					<td>5</td>
+					<td>51</td>
+					<td>34</td>
+					<td>32</td>
+				</tr>
+				<tr>
+					<td>12/03/2020</td>
+					<td>22</td>
+					<td>25</td>
+					<td>32</td>
+					<td>11</td>
+					<td>45</td>
+					<td>5</td>
+					<td>56</td>
+					<td>87</td>
+				</tr>
+				<tr>
+					<td>12/04/2020</td>
+					<td>34</td>
+					<td>65</td>
+					<td>11</td>
+					<td>44</td>
+					<td>76</td>
+					<td>43</td>
+					<td>37</td>
+					<td>90</td>
+				</tr>
+				<tr>
+					<td>12/05/2020</td>
+					<td>34</td>
+					<td>25</td>
+					<td>40</td>
+					<td>43</td>
+					<td>27</td>
+					<td>5</td>
+					<td>58</td>
+					<td>51</td>
+				</tr>
+				<tr>
+					<td>12/06/2020</td>
+					<td>34</td>
+					<td>25</td>
+					<td>40</td>
+					<td>43</td>
+					<td>27</td>
+					<td>5</td>
+					<td>58</td>
+					<td>51</td>
+				</tr>
+			</table>
+		</main>
+	</body>
+</html>

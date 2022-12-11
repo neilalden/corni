@@ -1,0 +1,95 @@
+:root {
+	--primary: #2db92d;
+	--gray: #d9d9d9;
+}
+* {
+	font-family: "Public Sans", sans-serif;
+	font-weight: 600;
+	margin: 0;
+	padding: 0;
+}
+body {
+	margin: 16px 64px;
+}
+img {
+	-webkit-user-drag: none;
+	-khtml-user-drag: none;
+	-moz-user-drag: none;
+	-o-user-drag: none;
+	user-drag: none;
+}
+#maskContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 500px;
+	width: 30vw;
+	height: 400px;
+	background-image: url("./assets/map/malabanan_norte_crop.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.marangayMask {
+	width: 450px;
+	height: 300px;
+}
+.mask {
+	width: 485px;
+	height: 335px;
+}
+.chartContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 500px;
+	width: 70vw;
+	height: 400px !important;
+	border: 2px solid var(--primary);
+	margin-left: 10px;
+}
+h1.title {
+	margin: 0;
+	font-size: 32px;
+	font-weight: bold;
+	color: var(--primary);
+}
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+.justify-content-between {
+	justify-content: space-between;
+}
+nav {
+	margin-bottom: 48px;
+}
+a,
+.nav-link {
+	color: #808080;
+	text-decoration: none;
+}
+.nav-image {
+	width: 50px;
+	height: 50px;
+	margin: 8px 32px 8px 0;
+	cursor: pointer;
+}
+.indication {
+	margin: 16px 0;
+}
+p {
+	margin: 8px 0;
+	font-size: 16px;
+	font-weight: 100;
+}
+select {
+	margin: 8px 0;
+	padding: 8px 16px;
+	border-radius: 8px;
+	border-width: 0;
+	background-color: var(--gray);
+}
+.disabled {
+	cursor: not-allowed;
+}
